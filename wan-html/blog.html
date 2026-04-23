@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="he">
 
 <head>
     <!--- Basic Page Needs  -->
@@ -250,6 +250,172 @@
         .post-pagination ul {
             direction: ltr;
         }
+        /* Hero - light, clean RTL version matching homepage look */
+        .inner-hero-area {
+            background: #ffffff;
+            padding: 180px 0 80px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            border-bottom: 1px solid #eef2f9;
+        }
+        .inner-hero-area::before {
+            content: "";
+            position: absolute;
+            top: -160px;
+            left: -140px;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(0, 186, 255, 0.18) 0%, rgba(0, 186, 255, 0) 70%);
+            pointer-events: none;
+        }
+        .inner-hero-area::after {
+            content: "";
+            position: absolute;
+            bottom: -180px;
+            right: -140px;
+            width: 440px;
+            height: 440px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(81, 35, 198, 0.14) 0%, rgba(81, 35, 198, 0) 70%);
+            pointer-events: none;
+        }
+        .inner-hero-area .inner-hero-banner {
+            display: none;
+        }
+        .inner-hero-area .container {
+            position: relative;
+            z-index: 2;
+        }
+        .inner-hero-area .inner-hero-content {
+            direction: rtl;
+            text-align: center;
+        }
+        .inner-hero-area .inner-hero-content .intro {
+            display: inline-block;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #004dcd;
+            margin: 0 0 16px;
+            font-weight: 700;
+            padding: 7px 20px;
+            border: 1px solid rgba(0, 77, 205, 0.2);
+            border-radius: 100px;
+            background: rgba(0, 186, 255, 0.08);
+        }
+        .inner-hero-area .inner-hero-content .title {
+            color: #000c35;
+            font-size: 56px;
+            line-height: 1.15;
+            font-weight: 800;
+            margin: 0 0 16px;
+        }
+        .inner-hero-area .inner-hero-content .subtitle {
+            color: #6e7c90;
+            font-size: 17px;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto 22px;
+        }
+        .inner-hero-area .inner-hero-content .meta {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
+            background: #f6f9ff;
+            border: 1px solid #e4ebf7;
+            padding: 8px 20px;
+            border-radius: 100px;
+        }
+        .inner-hero-area .inner-hero-content .meta li {
+            display: inline-flex;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+        .inner-hero-area .inner-hero-content .meta li::after {
+            display: none;
+        }
+        .inner-hero-area .inner-hero-content .meta li + li::before {
+            content: "\f104";
+            font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free";
+            font-weight: 300;
+            color: #b0bccb;
+            margin: 0 10px;
+            font-size: 13px;
+        }
+        .inner-hero-area .inner-hero-content .meta li a {
+            color: #000c35;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            transition: 0.25s;
+        }
+        .inner-hero-area .inner-hero-content .meta li:last-child a {
+            color: #004dcd;
+        }
+        .inner-hero-area .inner-hero-content .meta li a:hover {
+            color: #00baff;
+        }
+        @media (max-width: 767px) {
+            .inner-hero-area {
+                padding: 140px 0 60px;
+            }
+            .inner-hero-area .inner-hero-content .title {
+                font-size: 36px;
+            }
+            .inner-hero-area .inner-hero-content .subtitle {
+                font-size: 15px;
+            }
+        }
+        /* Override blog accent color from red (#ef4060) to brand blue (#0164d8) */
+        .single-post-item .post-details .post-title:hover,
+        .single-post-item.format-quote .post-details .post-title::before,
+        .single-widgets.widget_categories ul li a:hover,
+        .single-widgets.widget_post_with_thumb ul li .right .feed-title:hover,
+        .single-widgets.widget_post_with_thumb ul li .right .post-date i {
+            color: #0164d8 !important;
+        }
+        .single-post-item.format-video .post-media .popup-youtube,
+        .post-pagination ul li a:hover,
+        .post-pagination ul li.active a,
+        .single-widgets.widget_post_share ul li a:hover,
+        .single-widgets.tagcolud ul li a:hover {
+            background: #0164d8 !important;
+            border-color: #0164d8 !important;
+            color: #ffffff !important;
+        }
+        .post-pagination ul li a:hover,
+        .post-pagination ul li.active a {
+            background-image: linear-gradient(90deg, #004dcd 0%, #00baff 100%);
+        }
+        /* Focus ring on search input etc. */
+        .single-widgets.widget_search form button {
+            background: #0164d8;
+        }
+        /* Blog details page styles */
+        .page-blog-area .blog-details blockquote .icon,
+        .page-blog-area .blog-details .post-bottom-meta .post-share .list li a:hover,
+        .page-blog-area .blog-details .comment-area .all-comments article .comment-details .comment-meta .comment-left-meta .comment-date,
+        .page-blog-area .blog-details .comment-area .comment-box .comment-input-box .icon,
+        .single-post-pagination .prev-post a .title-with-link .title:hover,
+        .single-post-pagination .next-post a .title-with-link .title:hover,
+        .inner-page-footer .footer-top-area .fta-logo .link .color {
+            color: #0164d8 !important;
+        }
+        .page-blog-area .blog-details .post-bottom-meta .post-tags .list li a:hover,
+        .page-blog-area .blog-details .comment-area .comment-box .comment-input-box input[type="submit"],
+        .inner-page-footer .footer-bottom-area .fba-social .social li a:hover,
+        .inner-page-footer .footer-bottom-area .hba-newsletter .hba-newsletter-input-box button {
+            background: #0164d8 !important;
+            border-color: #0164d8 !important;
+            color: #ffffff !important;
+        }
     </style>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="img/favicon.ico">
@@ -296,10 +462,11 @@
     </header>
 
     <section class="inner-hero-area">
-        <div class="inner-hero-banner"><img src="img/blog/hero-banner.png" alt=""></div>
         <div class="container">
             <div class="inner-hero-content">
+                <p class="intro">Our Blog</p>
                 <h2 class="title">הבלוג שלנו</h2>
+                <p class="subtitle">עדכונים, תובנות וסיפורים מאחורי הקלעים על עיצוב, פיתוח ומיתוג מהצוות שלנו.</p>
                 <ul class="meta">
                     <li><a href="index.html">בית</a></li>
                     <li><a href="blog.html">בלוג</a></li>
@@ -507,7 +674,7 @@
     </section>
 
     <footer>
-        <div class="footer-banner"><img src="img/home1/footer-banner.png" alt=""></div>
+        <div class="footer-banner wow fadeIn" data-wow-duration="1.0s" data-wow-delay="0.5s"><img src="img/home1/footer-banner.png" alt=""></div>
         <div class="footer-top-area">
             <div class="container">
                 <div class="row">
