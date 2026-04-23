@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 
 <head>
     <!--- Basic Page Needs  -->
     <meta charset="utf-8">
-    <title>Blog || Wan</title>
+    <title>בלוג || Wan</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keywords" content="">
@@ -23,121 +23,295 @@
     <link rel="stylesheet" href="fonts/stylesheet.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* Quote Modal Styles */
+        .quote-modal .modal-dialog {
+            max-width: 560px;
+            margin: 40px auto;
+        }
+        .quote-modal .modal-content {
+            border: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 77, 205, 0.25);
+            direction: rtl;
+            text-align: right;
+        }
+        .quote-modal .quote-header {
+            background-image: linear-gradient(90deg, #004dcd 0%, #00baff 100%);
+            color: #ffffff;
+            padding: 32px 40px 28px;
+            position: relative;
+        }
+        .quote-modal .quote-header .intro {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ffffff;
+            opacity: 1;
+            margin: 0 0 8px;
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0, 30, 80, 0.25);
+        }
+        .quote-modal .quote-header .title {
+            font-size: 26px;
+            line-height: 1.3;
+            font-weight: 700;
+            margin: 0 0 6px;
+            color: #ffffff;
+        }
+        .quote-modal .quote-header .subtitle {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ffffff;
+            opacity: 1;
+            margin: 0;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 30, 80, 0.25);
+        }
+        .quote-modal .quote-close {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            border: 0;
+            font-size: 16px;
+            line-height: 1;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .quote-modal .quote-close:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: rotate(90deg);
+        }
+        .quote-modal .quote-body {
+            padding: 32px 40px 36px;
+            background: #ffffff;
+        }
+        .quote-modal .form-row {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .quote-modal .form-field {
+            flex: 1;
+            position: relative;
+        }
+        .quote-modal label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #000c35;
+            margin-bottom: 8px;
+        }
+        .quote-modal label .req {
+            color: #ef4060;
+            margin-right: 3px;
+        }
+        .quote-modal input[type="text"],
+        .quote-modal input[type="tel"],
+        .quote-modal input[type="email"],
+        .quote-modal select,
+        .quote-modal textarea {
+            width: 100%;
+            box-sizing: border-box;
+            height: 48px;
+            line-height: 1.2;
+            border: 1.5px solid #e4e8f3;
+            border-radius: 10px;
+            padding: 0 16px;
+            font-size: 14px;
+            color: #000c35;
+            background: #f8fafd;
+            transition: 0.25s;
+            font-family: inherit;
+            direction: rtl;
+            text-align: right;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        .quote-modal select {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='none' stroke='%23606e88' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M1 1l5 5 5-5'/></svg>");
+            background-repeat: no-repeat;
+            background-position: left 16px center;
+            padding-left: 40px;
+        }
+        .quote-modal textarea {
+            resize: vertical;
+            height: auto;
+            min-height: 110px;
+            padding: 12px 16px;
+            line-height: 1.5;
+        }
+        .quote-modal input:focus,
+        .quote-modal select:focus,
+        .quote-modal textarea:focus {
+            outline: 0;
+            border-color: #00baff;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(0, 186, 255, 0.12);
+        }
+        .quote-modal .submit-btn {
+            width: 100%;
+            background-image: linear-gradient(90deg, #004dcd 0%, #00baff 100%);
+            color: #ffffff;
+            border: 0;
+            border-radius: 100px;
+            padding: 16px 30px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            box-shadow: 0 10px 20px rgba(59, 132, 241, 0.25);
+            transition: 0.3s;
+        }
+        .quote-modal .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 26px rgba(59, 132, 241, 0.35);
+        }
+        .quote-modal .quote-success {
+            display: none;
+            text-align: center;
+            padding: 20px 10px 10px;
+        }
+        .quote-modal .quote-success .icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00baff, #004dcd);
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 18px;
+        }
+        .quote-modal .quote-success h3 {
+            color: #000c35;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .quote-modal .quote-success p {
+            color: #606e88;
+            margin: 0;
+        }
+        @media (max-width: 575px) {
+            .quote-modal .form-row {
+                flex-direction: column;
+                gap: 0;
+                margin-bottom: 0;
+            }
+            .quote-modal .form-field {
+                margin-bottom: 14px;
+            }
+            .quote-modal .quote-header {
+                padding: 26px 24px 22px;
+            }
+            .quote-modal .quote-body {
+                padding: 24px;
+            }
+            .quote-modal .quote-header .title {
+                font-size: 22px;
+            }
+        }
+        /* Blog page RTL overrides */
+        .page-blog-area .single-post-item .post-details {
+            direction: rtl;
+            text-align: right;
+        }
+        .page-blog-area .sidebar {
+            direction: rtl;
+            text-align: right;
+        }
+        .single-post-item .post-details .meta-comment-tag {
+            text-align: right;
+        }
+        .single-widgets .title {
+            text-align: right;
+        }
+        .single-widgets.widget_categories ul li a {
+            text-align: right;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row-reverse;
+        }
+        .inner-hero-area .inner-hero-content {
+            direction: rtl;
+            text-align: right;
+        }
+        .inner-hero-area .inner-hero-content .meta {
+            direction: rtl;
+        }
+        .post-pagination ul {
+            direction: ltr;
+        }
+    </style>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/png" href="img/favicon.ico">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+    <![endif]-->
 </head>
 
-<body class="">
+<body>
     <div id="preloader"></div>
-    <header class="inner-h2-header h2-header">
-        <div class="home2-header-container header-container">
+    <header>
+        <div class="header-container">
             <div class="row">
-                <div class="col-lg-6 col-sm-2 col-6">
+                <div class="col-lg-4 col-md-6 col-sm-7 col-12 d-none d-md-block">
+                    <div class="header-right">
+                        <ul class="links">
+                            <li><a href="#">תמיכה</a></li>
+                            <li><a href="#">התחברות</a></li>
+                        </ul>
+                        <div class="get-quote">
+                            <a href="#" class="link btn-style-1" data-toggle="modal" data-target="#quoteModal">הצעת מחיר</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-3 col-sm-8 col-6">
                     <div class="main-menu stellarnav">
                         <ul>
-                            <li><a href="index.html">Home</a>
-                                <ul>
-                                    <li><a href="index.html">Home One</a>
-                                        <!-- <ul>
-                                            <li><a href="#">Demo</a>
-                                                <ul>
-                                                    <li><a href="#">Even deeper</a>
-                                                        <ul>
-                                                            <li><a href="#">Demo</a></li>
-                                                            <li><a href="#">Demo</a></li>
-                                                            <li><a href="#">Demo</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Demo</a></li>
-                                                    <li><a href="#">Demo</a></li>
-                                                    <li><a href="#">Demo</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Demo</a></li>
-                                            <li><a href="#">Demo</a></li>
-                                            <li><a href="#">Demo</a></li>
-                                            <li><a href="#">Demo</a></li>
-                                        </ul> -->
-                                    </li>
-                                    <li><a href="home2-product-showcase.html">Product Showcase</a>
-                                        <!-- <ul>
-                                            <li><a href="#">Demo</a></li>
-                                            <li><a href="#">Demo</a></li>
-                                            <li><a href="#">Demo</a></li>
-                                            <li><a href="#">Demo</a></li>
-                                        </ul> -->
-                                    </li>
-                                    <li><a href="home3-app-landing.html">App Landing</a>
-                                        <!-- <ul>
-                                            <li><a href="#">Deeper</a>
-                                                <ul>
-                                                    <li><a href="#">Demo</a></li>
-                                                    <li><a href="#">Demo</a></li>
-                                                    <li><a href="#">Demo</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Demo</a></li>
-                                            <li><a href="#">Demo</a></li>
-                                            <li><a href="#">Demo</a></li>
-                                        </ul> -->
-                                    </li>
-                                    <li><a href="home4-portfolio.html">Portfolio</a></li>
-                                    <li><a href="home5-sass.html">Sass</a>
-                                        <!-- <ul>
-                                            <li><a href="#">Demo</a></li>
-                                            <li><a href="#">Demo</a></li>
-                                            <li><a href="#">Demo</a></li>
-                                            <li><a href="#">Demo</a></li>
-                                        </ul> -->
-                                    </li>
-                                    <li><a href="home6-cleanrex.html">Cleanrex</a></li>
-                                </ul>
-                            </li>
-                            <li class="active"><a href="#">Elements</a></li>
-                            <li><a href="#">Portfolio</a></li>
-                            <li><a href="#">News</a></li>
-                            <li><a href="#">Store</a></li>
+                            <li><a href="#">צור קשר</a></li>
+                            <li><a href="index.html#_pricing">פתרונות</a></li>
+                            <li><a href="index.html#_testimonial">פורטפוליו</a></li>
+                            <li class="active"><a href="blog.html">בלוג</a></li>
+                            <li><a href="index.html#_about">מי אנחנו</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-sm-3 col-6">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6">
                     <div class="logo">
-                        <a href="home2-product-showcase.html" class="link">wan<span class="color">.</span></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-7 col-12 d-none d-sm-block">
-                    <div class="header2-right">
-                        <ul class="links">
-                            <li><a href="#"><i class="fal fa-shopping-cart"></i></a></li>
-                            <li><span data-target="#exampleModalLong" data-toggle="modal"><i class="fal fa-search"></i></span></li>
-                            <li><a href="#"><i class="fal fa-bars"></i></a></li>
-                        </ul>
+                        <a href="index.html" class="link"><span class="color">.</span>wan</a>
                     </div>
                 </div>
             </div>
         </div>
     </header>
+
     <section class="inner-hero-area">
         <div class="inner-hero-banner"><img src="img/blog/hero-banner.png" alt=""></div>
         <div class="container">
             <div class="inner-hero-content">
-                <h2 class="title">News Feeds</h2>
+                <h2 class="title">הבלוג שלנו</h2>
                 <ul class="meta">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="index.html">בית</a></li>
+                    <li><a href="blog.html">בלוג</a></li>
                 </ul>
             </div>
         </div>
     </section>
+
     <section class="page-blog-area">
         <div class="container">
             <div class="row">
+                <!-- Blog Posts -->
                 <div class="col-lg-8 col-md-12 col-sm-12 col-12">
                     <div class="single-post-item format-standard">
                         <div class="post-media">
@@ -145,13 +319,14 @@
                         </div>
                         <div class="post-details">
                             <ul class="meta-comment-tag">
-                                <li><a href="#"><span class="icon"><i class="fal fa-user"></i></span>by Rosalina Doe</a></li>
-                                <li><a href="#"><span class="icon"><i class="fal fa-comments"></i></span>45 Comments</a></li>
+                                <li><a href="#"><span class="icon"><i class="fal fa-user"></i></span>מאת רוזלינה דו</a></li>
+                                <li><a href="#"><span class="icon"><i class="fal fa-comments"></i></span>45 תגובות</a></li>
                             </ul>
-                            <a href="blog-details.html" class="post-title">Lorem ipsum dolor sit amet, consectetur cing elit, sed do eiusmod tempor.</a>
-                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+                            <a href="blog-details.html" class="post-title">כיצד עיצוב ממוקד משתמש משנה את חווית הלקוח</a>
+                            <p class="text">עיצוב ממוקד משתמש אינו רק טרנד — הוא הגישה שמניעה צמיחה עסקית אמיתית. כשמבינים את הצרכים, הרגשות וההתנהגות של המשתמשים, ניתן לבנות מוצרים שאנשים באמת אוהבים להשתמש בהם ושמגדילים את שיעורי ההמרה.</p>
                         </div>
                     </div>
+
                     <div class="single-post-item format-video">
                         <div class="post-media">
                             <a href="blog-details.html"><img src="img/blog/post-video-1.jpg" alt=""></a>
@@ -159,13 +334,14 @@
                         </div>
                         <div class="post-details">
                             <ul class="meta-comment-tag">
-                                <li><a href="#"><span class="icon"><i class="fal fa-user"></i></span>by Rosalina Doe</a></li>
-                                <li><a href="#"><span class="icon"><i class="fal fa-comments"></i></span>45 Comments</a></li>
+                                <li><a href="#"><span class="icon"><i class="fal fa-user"></i></span>מאת רוזלינה דו</a></li>
+                                <li><a href="#"><span class="icon"><i class="fal fa-comments"></i></span>32 תגובות</a></li>
                             </ul>
-                            <a href="blog-details.html" class="post-title">Lorem ipsum dolor sit amet, consectetur cing elit, sed do eiusmod tempor.</a>
-                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+                            <a href="blog-details.html" class="post-title">5 עקרונות עיצוב שכל מפתח חייב להכיר</a>
+                            <p class="text">בעולם שבו המשתמשים מצפים לחוויות מושלמות, הפער בין עיצוב טוב לעיצוב גרוע הוא ההבדל בין הצלחה לכישלון. ריכזנו את חמשת העקרונות הבסיסיים שמנחים את הצוות שלנו בכל פרויקט.</p>
                         </div>
                     </div>
+
                     <div class="single-post-item format-gallery">
                         <div class="post-media posts-gallery relative">
                             <div class="post-gallery-carousel owl-carousel">
@@ -175,67 +351,59 @@
                         </div>
                         <div class="post-details">
                             <ul class="meta-comment-tag">
-                                <li><a href="#"><span class="icon"><i class="fal fa-user"></i></span>by Rosalina Doe</a></li>
-                                <li><a href="#"><span class="icon"><i class="fal fa-comments"></i></span>45 Comments</a></li>
+                                <li><a href="#"><span class="icon"><i class="fal fa-user"></i></span>מאת רוזלינה דו</a></li>
+                                <li><a href="#"><span class="icon"><i class="fal fa-comments"></i></span>18 תגובות</a></li>
                             </ul>
-                            <a href="blog-details.html" class="post-title">Lorem ipsum dolor sit amet, consectetur cing elit, sed do eiusmod tempor.</a>
-                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+                            <a href="blog-details.html" class="post-title">מאחורי הקלעים: כיצד בנינו את מערכת העיצוב שלנו</a>
+                            <p class="text">מערכת עיצוב חזקה חוסכת זמן, מבטיחה עקביות ומאפשרת לצוות לנוע מהר. שתפנו אתכם בתהליך שעברנו — מהגדרת טוקנים ועד לבניית ספריית קומפוננטות מלאה.</p>
                         </div>
                     </div>
-                    <div class="single-post-item format-audio">
-                        <div class="post-media">
-                            <iframe src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/78726841&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-                        </div>
-                        <div class="post-details">
-                            <ul class="meta-comment-tag">
-                                <li><a href="#"><span class="icon"><i class="fal fa-user"></i></span>by Rosalina Doe</a></li>
-                                <li><a href="#"><span class="icon"><i class="fal fa-comments"></i></span>45 Comments</a></li>
-                            </ul>
-                            <a href="blog-details.html" class="post-title">Lorem ipsum dolor sit amet, consectetur cing elit, sed do eiusmod tempor.</a>
-                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
-                        </div>
-                    </div>
+
                     <div class="single-post-item format-aside">
                         <div class="post-details">
                             <ul class="meta-comment-tag">
-                                <li><a href="#"><span class="icon"><i class="fal fa-user"></i></span>by Rosalina Doe</a></li>
-                                <li><a href="#"><span class="icon"><i class="fal fa-comments"></i></span>45 Comments</a></li>
+                                <li><a href="#"><span class="icon"><i class="fal fa-user"></i></span>מאת רוזלינה דו</a></li>
+                                <li><a href="#"><span class="icon"><i class="fal fa-comments"></i></span>11 תגובות</a></li>
                             </ul>
-                            <a href="blog-details.html" class="post-title">Lorem ipsum dolor sit amet, consectetur cing elit, sed do eiusmod tempor.</a>
-                            <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+                            <a href="blog-details.html" class="post-title">למה מיתוג עסקי הוא ההשקעה הכי חשובה שתעשו</a>
+                            <p class="text">מיתוג חזק יוצר אמון, מגביר מחויבות לקוחות ומבדל אתכם מהמתחרים. בפוסט זה נסביר מדוע כדאי להשקיע במיתוג מהיום הראשון ואיך לעשות זאת נכון.</p>
                         </div>
                     </div>
+
                     <div class="single-post-item format-quote">
                         <div class="post-details">
                             <ul class="meta-comment-tag">
-                                <li><a href="#"><span class="icon"><i class="fal fa-user"></i></span>by Rosalina Doe</a></li>
-                                <li><a href="#"><span class="icon"><i class="fal fa-comments"></i></span>45 Comments</a></li>
+                                <li><a href="#"><span class="icon"><i class="fal fa-user"></i></span>מאת רוזלינה דו</a></li>
+                                <li><a href="#"><span class="icon"><i class="fal fa-comments"></i></span>7 תגובות</a></li>
                             </ul>
-                            <a href="blog-details.html" class="post-title">Lorem ipsum dolor sit amet, consec cing elit, sed do eiusmod tempor.</a>
+                            <a href="blog-details.html" class="post-title">עיצוב טוב הוא עיצוב שאינו נראה — הוא פשוט עובד.</a>
                         </div>
                     </div>
+
                     <div class="post-pagination">
                         <ul>
-                            <li><a href="#"><i class="fal fa-angle-left"></i></a></li>
+                            <li><a href="#"><i class="fal fa-angle-right"></i></a></li>
                             <li class="active"><a href="#">2</a></li>
                             <li><a href="#">...</a></li>
                             <li><a href="#">6</a></li>
                             <li><a href="#">7</a></li>
-                            <li><a href="#"><i class="fal fa-angle-right"></i></a></li>
+                            <li><a href="#"><i class="fal fa-angle-left"></i></a></li>
                         </ul>
                     </div>
                 </div>
+
+                <!-- Sidebar -->
                 <div class="col-lg-4 offset-lg-0 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-12">
                     <div class="sidebar">
                         <div class="single-widgets widget_search">
-                            <h4 class="title">Search</h4>
+                            <h4 class="title">חיפוש</h4>
                             <form action="#" class="search-form">
-                                <input type="search" name="search" placeholder="Search..">
+                                <input type="search" name="search" placeholder="חפש כאן..">
                                 <button type="submit"><i class="far fa-search"></i></button>
                             </form>
                         </div>
                         <div class="single-widgets widget_instagram">
-                            <h4 class="title">Instagram</h4>
+                            <h4 class="title">אינסטגרם</h4>
                             <ul>
                                 <li><a href="#"><img src="img/blog/insta-1.jpg" alt=""></a></li>
                                 <li><a href="#"><img src="img/blog/insta-2.jpg" alt=""></a></li>
@@ -246,91 +414,90 @@
                             </ul>
                         </div>
                         <div class="single-widgets widget_post_share">
-                            <h4 class="title">Follow Us</h4>
+                            <h4 class="title">עקבו אחרינו</h4>
                             <ul>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="fab fa-youtube"></i></a></li>
                                 <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
                             </ul>
                         </div>
                         <div class="single-widgets widget_categories">
-                            <h4 class="title">Categories</h4>
+                            <h4 class="title">קטגוריות</h4>
                             <ul>
-                                <li><a href="#">Lifestyle <span>05</span></a></li>
-                                <li><a href="#">Travel <span>34</span></a></li>
-                                <li><a href="#">Fashion <span>89</span></a>
-                                <li><a href="#">Branding <span>78</span></a></li>
-                                <li><a href="#">Music <span>96</span></a></li>
+                                <li><a href="#">עיצוב UI/UX <span>15</span></a></li>
+                                <li><a href="#">מיתוג <span>34</span></a></li>
+                                <li><a href="#">פיתוח ווב <span>89</span></a></li>
+                                <li><a href="#">שיווק דיגיטלי <span>78</span></a></li>
+                                <li><a href="#">טכנולוגיה <span>42</span></a></li>
                             </ul>
                         </div>
                         <div class="single-widgets widget_post_with_thumb">
-                            <h4 class="title">Feeds</h4>
+                            <h4 class="title">פוסטים אחרונים</h4>
                             <ul>
                                 <li>
                                     <span class="left">
-                                        <img src="img/blog/feed-1.jpg" alt="" class="">
+                                        <img src="img/blog/feed-1.jpg" alt="">
                                     </span>
                                     <span class="right">
-                                        <a class="feed-title" href="#">Alonso Kelina Falao Asiano Pero</a> 
-                                        <span class="post-date"><i class="fal fa-clock"></i>6 Hours ago</span>
+                                        <a class="feed-title" href="#">כיצד AI משנה את עולם עיצוב המוצר</a>
+                                        <span class="post-date"><i class="fal fa-clock"></i>לפני 6 שעות</span>
                                     </span>
                                 </li>
                                 <li>
                                     <span class="left">
-                                        <img src="img/blog/feed-2.jpg" alt="" class="">
+                                        <img src="img/blog/feed-2.jpg" alt="">
                                     </span>
                                     <span class="right">
-                                        <a class="feed-title" href="#">It is a long established fact that a reader</a> 
-                                        <span class="post-date"><i class="fal fa-clock"></i>6 Hours ago</span>
+                                        <a class="feed-title" href="#">המדריך המלא לבניית מערכת עיצוב</a>
+                                        <span class="post-date"><i class="fal fa-clock"></i>לפני יום</span>
                                     </span>
                                 </li>
                                 <li>
                                     <span class="left">
-                                        <img src="img/blog/feed-3.jpg" alt="" class="">
+                                        <img src="img/blog/feed-3.jpg" alt="">
                                     </span>
                                     <span class="right">
-                                        <a class="feed-title" href="#">Many desktop publish packages and web</a> 
-                                        <span class="post-date"><i class="fal fa-clock"></i>6 Hours ago</span>
+                                        <a class="feed-title" href="#">10 כלים שכל מעצב חייב להכיר ב-2026</a>
+                                        <span class="post-date"><i class="fal fa-clock"></i>לפני 3 ימים</span>
                                     </span>
                                 </li>
                                 <li>
                                     <span class="left">
-                                        <img src="img/blog/feed-4.jpg" alt="" class="">
+                                        <img src="img/blog/feed-4.jpg" alt="">
                                     </span>
                                     <span class="right">
-                                        <a class="feed-title" href="#">Various versions have evolved over the years</a> 
-                                        <span class="post-date"><i class="fal fa-clock"></i>6 Hours ago</span>
+                                        <a class="feed-title" href="#">אסטרטגיית מיתוג לעסקים קטנים ובינוניים</a>
+                                        <span class="post-date"><i class="fal fa-clock"></i>לפני שבוע</span>
                                     </span>
                                 </li>
                                 <li>
                                     <span class="left">
-                                        <img src="img/blog/feed-5.jpg" alt="" class="">
+                                        <img src="img/blog/feed-5.jpg" alt="">
                                     </span>
                                     <span class="right">
-                                        <a class="feed-title" href="#">Photo booth anim 8-bit PBR 3 wolf moon.</a> 
-                                        <span class="post-date"><i class="fal fa-clock"></i>6 Hours ago</span>
+                                        <a class="feed-title" href="#">ניתוח A/B: איך לשפר המרות בדפי נחיתה</a>
+                                        <span class="post-date"><i class="fal fa-clock"></i>לפני שבועיים</span>
                                     </span>
                                 </li>
                             </ul>
                         </div>
                         <div class="single-widgets tagcolud">
-                            <h4 class="title">Tag Cloud</h4>
+                            <h4 class="title">תגיות</h4>
                             <ul>
-                                <li><a href="#">Travel</a></li>
-                                <li><a href="#">Advanture</a></li>
-                                <li><a href="#">Food</a></li>
-                                <li><a href="#">lifestyle</a></li>
-                                <li><a href="#">Photography</a></li>
-                                <li><a href="#">Trends</a></li>
-                                <li><a href="#">Music</a></li>
-                                <li><a href="#">Fashion</a></li>
+                                <li><a href="#">עיצוב</a></li>
+                                <li><a href="#">מיתוג</a></li>
+                                <li><a href="#">UX</a></li>
+                                <li><a href="#">פיתוח</a></li>
+                                <li><a href="#">טכנולוגיה</a></li>
+                                <li><a href="#">שיווק</a></li>
+                                <li><a href="#">AI</a></li>
+                                <li><a href="#">Figma</a></li>
                             </ul>
                         </div>
                         <div class="single-widgets widget_banner">
                             <a href="#">
-                                <img class="" src="img/blog/banner.jpg" alt="">
+                                <img src="img/blog/banner.jpg" alt="">
                             </a>
                         </div>
                     </div>
@@ -338,23 +505,24 @@
             </div>
         </div>
     </section>
-    <footer class="inner-page-footer">
+
+    <footer>
         <div class="footer-banner"><img src="img/home1/footer-banner.png" alt=""></div>
         <div class="footer-top-area">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-sm-3 col-12">
                         <div class="fta-logo">
-                            <a href="index.html" class="link">wan<span class="color">.</span></a>
+                            <a href="index.html" class="link"><span class="color">.</span>wan</a>
                         </div>
                     </div>
                     <div class="col-lg-5 offset-lg-3 col-sm-9 col-12">
-                        <div class="fta-menu">
+                        <div class="fta-menu" dir="rtl">
                             <ul class="menu">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Careers</a></li>
+                                <li><a href="index.html">בית</a></li>
+                                <li><a href="#">אודות</a></li>
+                                <li><a href="#">תנאים והגבלות</a></li>
+                                <li><a href="#">קריירה</a></li>
                             </ul>
                         </div>
                     </div>
@@ -369,18 +537,18 @@
                             <ul class="social">
                                 <li><a href="#"><i class="fab fa-facebook-f"></i><span class="text">Facebook</span></a></li>
                                 <li><a href="#"><i class="fab fa-youtube"></i><span class="text">Youtube</span></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i><span class="text">Twitter</span></a></li>
+                                <li><a href="#" class="x-icon-link"><i class="fab x-icon">𝕏</i></a></li>
                             </ul>
-                            <p class="copyright">Copyright By@Quomodo - 2019</p>
+                            <p class="copyright" dir="rtl">כל הזכויות שמורות @Quomodo - 2026</p>
                         </div>
                     </div>
                     <div class="col-lg-5 offset-lg-3 col-md-6 col-sm-12 col-12">
-                        <div class="hba-newsletter">
-                            <h2 class="title">Subscribe to newsletter.</h2>
+                        <div class="hba-newsletter" dir="rtl">
+                            <h2 class="title">הרשמה לניוזלטר.</h2>
                             <form action="#">
                                 <div class="hba-newsletter-input-box">
-                                    <input type="text" placeholder="Enter your email address....">
-                                    <button><span class="icon"><i class="fal fa-envelope-open"></i></span>Subscribe</button>
+                                    <input type="text" placeholder="הזן את כתובת האימייל שלך....">
+                                    <button><span class="icon"><i class="fal fa-envelope-open"></i></span>הרשמה</button>
                                 </div>
                             </form>
                         </div>
@@ -389,18 +557,80 @@
             </div>
         </div>
     </footer>
+
+    <!-- Quote Modal -->
+    <div class="modal fade quote-modal" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="quote-header">
+                    <button type="button" class="quote-close" data-dismiss="modal" aria-label="סגור">
+                        <i class="fal fa-times"></i>
+                    </button>
+                    <p class="intro">Get a Quote</p>
+                    <h3 class="title" id="quoteModalTitle">בואו נדבר על הפרויקט שלך</h3>
+                    <p class="subtitle">מלאו את הפרטים ונחזור אליכם תוך 24 שעות עם הצעת מחיר מותאמת.</p>
+                </div>
+                <div class="quote-body">
+                    <form id="quoteForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="quoteName">שם מלא<span class="req">*</span></label>
+                                <input type="text" id="quoteName" name="name" placeholder="הכניסו את שמכם" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="quotePhone">טלפון<span class="req">*</span></label>
+                                <input type="tel" id="quotePhone" name="phone" placeholder="050-0000000" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="quoteEmail">אימייל<span class="req">*</span></label>
+                                <input type="email" id="quoteEmail" name="email" placeholder="name@example.com" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="quoteService">סוג השירות</label>
+                                <select id="quoteService" name="service">
+                                    <option value="">בחרו שירות</option>
+                                    <option value="web">בניית אתר</option>
+                                    <option value="app">פיתוח אפליקציה</option>
+                                    <option value="design">עיצוב UX/UI</option>
+                                    <option value="branding">מיתוג</option>
+                                    <option value="marketing">שיווק דיגיטלי</option>
+                                    <option value="other">אחר</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="quoteMessage">פרטי הפרויקט</label>
+                                <textarea id="quoteMessage" name="message" placeholder="ספרו לנו קצת על הפרויקט, היקף, לוח זמנים, תקציב..."></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">שליחת בקשה</button>
+                    </form>
+                    <div class="quote-success">
+                        <div class="icon"><i class="fal fa-check"></i></div>
+                        <h3>הבקשה התקבלה בהצלחה!</h3>
+                        <p>תודה, ניצור איתכם קשר בהקדם עם הצעת מחיר מותאמת.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Search Modal -->
     <div class="search-modal modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <form action="#" method="POST" class="xs-search-group">
-                    <input type="search" class="form-control" name="search" id="search" placeholder="Search">
+                    <input type="search" class="form-control" name="search" id="search" placeholder="חיפוש">
                     <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
                 </form>
             </div>
         </div>
         <button class="close-modal" type="button" data-dismiss="modal">x</button>
     </div>
+
     <!-- Scripts -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-ui.js"></script>
@@ -418,6 +648,36 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/theme.js"></script>
+    <script>
+        (function () {
+            var $form = $('#quoteForm');
+            var $success = $('.quote-modal .quote-success');
+            $form.on('submit', function (e) {
+                e.preventDefault();
+                var valid = true;
+                $form.find('[required]').each(function () {
+                    if (!$(this).val().trim()) {
+                        $(this).css('border-color', '#ef4060');
+                        valid = false;
+                    } else {
+                        $(this).css('border-color', '');
+                    }
+                });
+                if (!valid) return;
+                $form.hide();
+                $success.show();
+            });
+            $form.find('input, textarea, select').on('input change', function () {
+                $(this).css('border-color', '');
+            });
+            $('#quoteModal').on('hidden.bs.modal', function () {
+                $form[0].reset();
+                $form.show();
+                $success.hide();
+                $form.find('input, textarea, select').css('border-color', '');
+            });
+        })();
+    </script>
 </body>
 
 </html>
