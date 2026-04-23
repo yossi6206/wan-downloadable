@@ -373,6 +373,19 @@
                 font-size: 15px;
             }
         }
+        /* Replace widget title decoration (red image) with brand-blue CSS line + dots */
+        .single-widgets .title::before {
+            background: none !important;
+            background-image:
+                radial-gradient(circle, #0164d8 2.5px, transparent 3px),
+                radial-gradient(circle, #0164d8 2.5px, transparent 3px),
+                linear-gradient(90deg, #00baff 0%, #0164d8 100%) !important;
+            background-repeat: no-repeat !important;
+            background-size: 6px 6px, 6px 6px, 36px 3px !important;
+            background-position: 54px center, 44px center, 0 center !important;
+            width: 60px !important;
+            height: 10px !important;
+        }
         /* Override blog accent color from red (#ef4060) to brand blue (#0164d8) */
         .single-post-item .post-details .post-title:hover,
         .single-post-item.format-quote .post-details .post-title::before,
