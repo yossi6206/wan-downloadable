@@ -10,7 +10,7 @@
     <meta name="keywords" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Mobile Specific Meta  -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/jquery-ui.css">
@@ -231,6 +231,17 @@
         .single-post-item .post-details .meta-comment-tag {
             text-align: right;
         }
+        .single-post-item .post-details .meta-comment-tag li {
+            margin-right: 0;
+            margin-left: 19px;
+        }
+        .single-post-item .post-details .meta-comment-tag li:last-child {
+            margin-left: 0;
+        }
+        .single-post-item .post-details .meta-comment-tag li a .icon {
+            margin-right: 0;
+            margin-left: 10px;
+        }
         .single-widgets .title {
             text-align: right;
         }
@@ -410,6 +421,88 @@
         /* Focus ring on search input etc. */
         .single-widgets.widget_search form button {
             background: #0164d8;
+        }
+        /* ==================================================
+           Mobile & Tablet responsive adjustments (RTL)
+           ================================================== */
+        @media (max-width: 991.98px) {
+            html, body { overflow-x: hidden; }
+
+            /* Header: right-align menu, hamburger on the right for RTL */
+            header { padding: 20px 0; }
+            header .header-container > .row { align-items: center; }
+            .main-menu {
+                text-align: right !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+            .main-menu.stellarnav > ul { text-align: right; }
+            .main-menu.stellarnav .menu-toggle {
+                float: right;
+                padding: 6px 0 0 !important;
+            }
+            header .header-container .logo { text-align: left; }
+            header .header-container .logo .link { font-size: 40px; }
+
+            /* Inner hero - reduce padding */
+            .inner-hero-area {
+                padding: 140px 0 60px;
+            }
+            .inner-hero-area::before,
+            .inner-hero-area::after { display: none; }
+
+            /* Blog listing - stack sidebar below, add spacing */
+            .page-blog-area { padding: 50px 0; }
+            .page-blog-area .sidebar { margin-top: 40px; }
+            .single-post-item .post-details { padding: 30px 24px; }
+            .single-post-item .post-details .post-title {
+                font-size: 22px;
+                line-height: 1.35;
+            }
+            .single-post-item .post-details .meta-comment-tag { flex-wrap: wrap; }
+
+            /* Sidebar widgets */
+            .sidebar .single-widgets { padding: 30px 24px; }
+            .single-widgets.widget_instagram ul li { width: 32%; }
+
+            /* Footer */
+            footer .footer-banner { display: none !important; }
+            footer .footer-top-area .fta-menu {
+                text-align: center;
+                margin-top: 20px;
+            }
+            footer .footer-top-area .fta-logo {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+            footer .footer-bottom-area .fba-social {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            footer .footer-bottom-area .fba-social .copyright { text-align: center; }
+            footer .hba-newsletter .hba-newsletter-input-box input[type="text"] {
+                box-sizing: border-box;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .inner-hero-area { padding: 110px 0 40px; }
+            .inner-hero-area .inner-hero-content .title { font-size: 30px; }
+            .inner-hero-area .inner-hero-content .subtitle { font-size: 14px; }
+            .inner-hero-area .inner-hero-content .meta {
+                padding: 6px 14px;
+            }
+            .single-post-item .post-details { padding: 24px 18px; }
+            .single-post-item .post-details .post-title { font-size: 19px; }
+            .single-post-item .post-details .meta-comment-tag li {
+                margin-left: 12px !important;
+                font-size: 12px;
+            }
+            .post-pagination ul li a { width: 40px; height: 40px; line-height: 40px; }
+            .sidebar .single-widgets { padding: 24px 20px; }
+            .single-widgets.widget_post_with_thumb ul li .left { width: 70px; }
+            .single-widgets.widget_post_with_thumb ul li .right { padding-right: 80px; }
         }
         /* Blog details page styles */
         .page-blog-area .blog-details blockquote .icon,
