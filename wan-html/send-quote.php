@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$RESEND_API_KEY = 're_JASRqQ8L_mFfKnSj4eH6wmvQub7EisMeA';
+$RESEND_API_KEY = 're_bZvNJ1SX_L67Wn9RrjvNGaat2YSmkN2jf';
 $TO_EMAIL       = 'info@allintech.co.il';
 $FROM_EMAIL     = 'onboarding@resend.dev';
 
