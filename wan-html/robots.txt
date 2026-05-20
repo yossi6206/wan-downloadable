@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://my.ittsupport.co.il/sitemap.xml
