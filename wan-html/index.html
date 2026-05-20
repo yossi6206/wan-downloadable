@@ -1213,15 +1213,6 @@
             var $success = $('.quote-modal .quote-success');
             var $submitBtn = $form.find('.submit-btn');
 
-            var serviceLabels = {
-                'web': 'בניית אתר',
-                'app': 'פיתוח אפליקציה',
-                'design': 'עיצוב UX/UI',
-                'branding': 'מיתוג',
-                'marketing': 'שיווק דיגיטלי',
-                'other': 'אחר'
-            };
-
             $form.on('submit', function (e) {
                 e.preventDefault();
                 var valid = true;
@@ -1235,58 +1226,23 @@
                 });
                 if (!valid) return;
 
-                var name    = $('#quoteName').val().trim();
-                var phone   = $('#quotePhone').val().trim();
-                var email   = $('#quoteEmail').val().trim();
-                var service = $('#quoteService').val();
-                var message = $('#quoteMessage').val().trim();
-                var serviceLabel = serviceLabels[service] || service || '—';
-
-                var htmlBody = '<div dir="rtl" style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;">' +
-                    '<div style="background:linear-gradient(135deg,#1a73e8,#0d47a1);padding:24px 32px;">' +
-                    '<h2 style="color:#fff;margin:0;font-size:20px;">פנייה חדשה מהאתר</h2>' +
-                    '</div>' +
-                    '<div style="padding:28px 32px;background:#fff;">' +
-                    '<table style="width:100%;border-collapse:collapse;">' +
-                    '<tr><td style="padding:10px 0;border-bottom:1px solid #f0f0f0;color:#555;width:130px;font-weight:bold;">שם מלא</td>' +
-                    '<td style="padding:10px 0;border-bottom:1px solid #f0f0f0;color:#222;">' + name + '</td></tr>' +
-                    '<tr><td style="padding:10px 0;border-bottom:1px solid #f0f0f0;color:#555;font-weight:bold;">טלפון</td>' +
-                    '<td style="padding:10px 0;border-bottom:1px solid #f0f0f0;color:#222;">' + phone + '</td></tr>' +
-                    '<tr><td style="padding:10px 0;border-bottom:1px solid #f0f0f0;color:#555;font-weight:bold;">אימייל</td>' +
-                    '<td style="padding:10px 0;border-bottom:1px solid #f0f0f0;color:#222;">' + email + '</td></tr>' +
-                    '<tr><td style="padding:10px 0;border-bottom:1px solid #f0f0f0;color:#555;font-weight:bold;">סוג שירות</td>' +
-                    '<td style="padding:10px 0;border-bottom:1px solid #f0f0f0;color:#222;">' + serviceLabel + '</td></tr>' +
-                    (message ? '<tr><td style="padding:10px 0;color:#555;font-weight:bold;vertical-align:top;">פרטי פרויקט</td>' +
-                    '<td style="padding:10px 0;color:#222;white-space:pre-wrap;">' + message + '</td></tr>' : '') +
-                    '</table>' +
-                    '</div>' +
-                    '<div style="background:#f8f9fa;padding:14px 32px;text-align:center;font-size:12px;color:#888;">נשלח אוטומטית מהאתר</div>' +
-                    '</div>';
+                var formData = new FormData($form[0]);
 
                 $submitBtn.prop('disabled', true).text('שולח...');
 
-                fetch('https://api.resend.com/emails', {
+                fetch('send-quote.php', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer re_JASRqQ8L_mFfKnSj4eH6wmvQub7EisMeA'
-                    },
-                    body: JSON.stringify({
-                        from: 'אתר WAN <onboarding@resend.dev>',
-                        to: ['info@allintech.co.il'],
-                        reply_to: email,
-                        subject: 'פנייה חדשה מהאתר – ' + name,
-                        html: htmlBody
-                    })
+                    body: formData
                 })
                 .then(function (res) {
-                    if (res.ok) {
+                    return res.json();
+                })
+                .then(function (data) {
+                    if (data.ok) {
                         $form.hide();
                         $success.show();
                     } else {
-                        return res.json().then(function (data) {
-                            throw new Error(data.message || 'שגיאה בשליחה');
-                        });
+                        throw new Error(data.message || 'שגיאה בשליחה');
                     }
                 })
                 .catch(function () {
