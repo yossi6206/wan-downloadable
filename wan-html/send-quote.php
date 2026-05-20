@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $RESEND_API_KEY = 're_bZvNJ1SX_L67Wn9RrjvNGaat2YSmkN2jf';
 $TO_EMAIL       = 'info@allintech.co.il';
-$FROM_EMAIL     = 'onboarding@resend.dev';
+$FROM_EMAIL     = 'noreply@allintech.co.il';
 
 $name    = trim($_POST['name']    ?? '');
 $phone   = trim($_POST['phone']   ?? '');
