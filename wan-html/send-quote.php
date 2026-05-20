@@ -108,14 +108,57 @@ if ($curlError) {
     exit;
 }
 
-if ($httpCode >= 200 && $httpCode < 300) {
-    echo json_encode(['ok' => true]);
-} else {
+if ($curlError || !($httpCode >= 200 && $httpCode < 300)) {
     $body = json_decode($response, true);
     http_response_code(500);
     echo json_encode([
         'ok'      => false,
-        'message' => ($body['message'] ?? $body['name'] ?? 'שגיאה ' . $httpCode),
-        'detail'  => $response,
+        'message' => $curlError ?: ($body['message'] ?? $body['name'] ?? 'שגיאה ' . $httpCode),
     ]);
+    exit;
 }
+
+// מייל אישור ללקוח
+$clientHtml = '
+<div dir="rtl" style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;">
+  <div style="background:linear-gradient(135deg,#1a73e8,#0d47a1);padding:28px 32px;text-align:center;">
+    <h2 style="color:#fff;margin:0;font-size:22px;">הבקשה שלך התקבלה!</h2>
+  </div>
+  <div style="padding:32px;background:#fff;text-align:right;">
+    <p style="font-size:16px;color:#333;">שלום <strong>' . htmlspecialchars($name) . '</strong>,</p>
+    <p style="font-size:15px;color:#555;line-height:1.7;">
+      תודה שפנית אלינו! קיבלנו את הבקשה שלך ונחזור אליך תוך 24 שעות עם הצעת מחיר מותאמת.
+    </p>
+    <div style="background:#f0f6ff;border-right:4px solid #1a73e8;padding:16px 20px;margin:24px 0;border-radius:4px;">
+      <p style="margin:0;color:#1a73e8;font-weight:bold;">פרטי הפנייה שלך:</p>
+      <p style="margin:8px 0 0;color:#333;">שירות: <strong>' . htmlspecialchars($serviceLabel) . '</strong></p>
+      ' . ($message ? '<p style="margin:8px 0 0;color:#333;">פרטים: ' . htmlspecialchars($message) . '</p>' : '') . '
+    </div>
+    <p style="font-size:14px;color:#888;">לכל שאלה ניתן לפנות ישירות ל: <a href="mailto:' . $TO_EMAIL . '" style="color:#1a73e8;">' . $TO_EMAIL . '</a></p>
+  </div>
+  <div style="background:#f8f9fa;padding:14px 32px;text-align:center;font-size:12px;color:#888;">© AllinTech</div>
+</div>';
+
+$clientPayload = json_encode([
+    'from'    => 'AllinTech <noreply@allintech.co.il>',
+    'to'      => [$email],
+    'subject' => 'קיבלנו את הבקשה שלך – נחזור אליך בקרוב',
+    'html'    => $clientHtml,
+]);
+
+$ch2 = curl_init('https://api.resend.com/emails');
+curl_setopt_array($ch2, [
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POST           => true,
+    CURLOPT_POSTFIELDS     => $clientPayload,
+    CURLOPT_HTTPHEADER     => [
+        'Content-Type: application/json',
+        'Authorization: Bearer ' . $RESEND_API_KEY,
+    ],
+    CURLOPT_TIMEOUT        => 15,
+    CURLOPT_SSL_VERIFYPEER => true,
+]);
+curl_exec($ch2);
+curl_close($ch2);
+
+echo json_encode(['ok' => true]);
