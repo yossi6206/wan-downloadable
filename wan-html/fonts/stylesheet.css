@@ -1,0 +1,220 @@
+/* Polin Font Family */
+@font-face {
+    font-family: 'Polin';
+    src: url('Polin-Hairline.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Polin';
+    src: url('Polin-Thin.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Polin';
+    src: url('Polin-Extralight.otf') format('opentype');
+    font-weight: 250;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Polin';
+    src: url('Polin-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Polin';
+    src: url('Polin-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Polin';
+    src: url('Polin-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Polin';
+    src: url('Polin-Semibold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Polin';
+    src: url('Polin-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Polin';
+    src: url('Polin-Extrabold.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Polin';
+    src: url('Polin-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Alias legacy font families to Polin so existing CSS keeps working */
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Polin-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Polin-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Polin-Semibold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Polin-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Polin-Extrabold.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Polin-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Polin-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Polin-Thin.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Polin-Hairline.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Italic fallbacks (Polin has no italic, fall back to regular weights) */
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Polin-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Polin-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Polin-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy-RegularItalic';
+    src: url('Polin-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Global override: force Polin everywhere except icon fonts */
+html,
+body,
+h1, h2, h3, h4, h5, h6,
+p, span, a, li, ul, ol, div, section, header, footer, nav, article, aside, main,
+button, input, select, textarea, label, form,
+table, th, td, tr, thead, tbody,
+blockquote, figcaption {
+    font-family: 'Polin', sans-serif !important;
+}
+
+/* Preserve Font Awesome icon fonts with explicit values */
+.fa, .fas,
+[class^="fa-"]:not(.fab):not(.far):not(.fal),
+[class*=" fa-"]:not(.fab):not(.far):not(.fal) {
+    font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free" !important;
+    font-weight: 900 !important;
+}
+.far {
+    font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free" !important;
+    font-weight: 400 !important;
+}
+.fal {
+    font-family: "Font Awesome 5 Pro", "Font Awesome 5 Free" !important;
+    font-weight: 300 !important;
+}
+.fab {
+    font-family: "Font Awesome 5 Brands" !important;
+    font-weight: 400 !important;
+}
+
+/* X (Twitter) icon uses a Unicode character, not Font Awesome */
+.fab.x-icon,
+.x-icon {
+    font-family: "Helvetica Neue", Arial, sans-serif !important;
+    font-weight: 900 !important;
+}
+
+/* Preserve calendar icon font */
+[class^="pignose"],
+[class*=" pignose"] {
+    font-family: "pignose.calendar" !important;
+}
