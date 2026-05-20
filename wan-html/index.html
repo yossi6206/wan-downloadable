@@ -1245,8 +1245,8 @@
                         throw new Error(data.message || 'שגיאה בשליחה');
                     }
                 })
-                .catch(function () {
-                    alert('אירעה שגיאה בשליחת הטופס. אנא נסו שנית.');
+                .catch(function (err) {
+                    alert('שגיאה: ' + (err.message || 'אנא נסו שנית'));
                 })
                 .finally(function () {
                     $submitBtn.prop('disabled', false).text('שליחת בקשה');

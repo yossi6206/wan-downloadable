@@ -78,6 +78,12 @@ $payload = json_encode([
     'html'     => $htmlBody,
 ]);
 
+if (!function_exists('curl_init')) {
+    http_response_code(500);
+    echo json_encode(['ok' => false, 'message' => 'שגיאה: cURL לא זמין בשרת']);
+    exit;
+}
+
 $ch = curl_init('https://api.resend.com/emails');
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
@@ -87,16 +93,29 @@ curl_setopt_array($ch, [
         'Content-Type: application/json',
         'Authorization: Bearer ' . $RESEND_API_KEY,
     ],
+    CURLOPT_TIMEOUT        => 15,
+    CURLOPT_SSL_VERIFYPEER => true,
 ]);
 
 $response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$curlError = curl_error($ch);
+$httpCode  = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
+
+if ($curlError) {
+    http_response_code(500);
+    echo json_encode(['ok' => false, 'message' => 'שגיאת חיבור: ' . $curlError]);
+    exit;
+}
 
 if ($httpCode >= 200 && $httpCode < 300) {
     echo json_encode(['ok' => true]);
 } else {
     $body = json_decode($response, true);
     http_response_code(500);
-    echo json_encode(['ok' => false, 'message' => $body['message'] ?? 'שגיאת שרת']);
+    echo json_encode([
+        'ok'      => false,
+        'message' => ($body['message'] ?? $body['name'] ?? 'שגיאה ' . $httpCode),
+        'detail'  => $response,
+    ]);
 }
